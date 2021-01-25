@@ -39,7 +39,10 @@ public class BoardDelete extends HttpServlet {
 		
 		// 값 받아오기
 		vo.setBoardNo(Integer.parseInt(request.getParameter("row")));
-		int n = dao.delete(vo); // integer 값을 담기 위한 그릇
+		
+		// integer 값을 담기 위한 그릇
+		// 필수는 아니지만, 가급적 경고창을 해결해야 한다
+		int n = dao.delete(vo); 
 		String viewPage = null;
 		
 		if(n != 0) {
