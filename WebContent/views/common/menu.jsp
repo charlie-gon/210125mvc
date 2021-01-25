@@ -43,7 +43,7 @@
 
 </head>
 <body>
-<div align="center">
+<div>
 	<nav id="topMenu">
 		<ul>
 		<!-- 경로 모르겠으면 그냥 절대경로로 하세요 -->
@@ -55,7 +55,7 @@
 			</c:if>
 			<li><a class="menuLink" href="#">MemberJoin</a></li>
 			<li>|</li>
-			<li><a class="menuLink" href="#">자유게시판</a></li>
+			<li><a class="menuLink" href="/210125mvc/BoardList.do">자유게시판</a></li>
 			<li>|</li>
 			<li><a class="menuLink" href="#">공지사항</a></li>
 			<c:if test="${id ne null }">

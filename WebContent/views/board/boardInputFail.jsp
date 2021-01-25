@@ -9,8 +9,9 @@
 <body>
 
 	<div align="center">
-		<jsp:include page="views/common/menu.jsp" />
-		<h1>시작하는 곳</h1>
-	</div>
+	<jsp:include page="../common/menu.jsp" />
+		<div><h1>${msg }</h1></div>			
+	</div>	
+
 </body>
 </html>

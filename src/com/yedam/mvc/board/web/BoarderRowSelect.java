@@ -1,7 +1,6 @@
 package com.yedam.mvc.board.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,16 +13,16 @@ import com.yedam.mvc.board.dao.BoardsDAO;
 import com.yedam.mvc.board.service.BoardVO;
 
 /**
- * Servlet implementation class BoardList
+ * Servlet implementation class BoarderRowSelect
  */
-@WebServlet("/BoardList.do")
-public class BoardList extends HttpServlet {
+@WebServlet("/BoarderRowSelect.do")
+public class BoarderRowSelect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardList() {
+    public BoarderRowSelect() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,12 +33,15 @@ public class BoardList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf-8");
-		BoardsDAO dao = new BoardsDAO();
-		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
 		
-		list = dao.selectList(); // 실제 테이블에 접속해서 list를 가져온다.
-		request.setAttribute("list", list); // 아래 보여줄 페이지로 넘길 변수 이름은 "list"
-		String viewPage = "views/board/boardList.jsp"; // 보여줄 페이지
+		BoardsDAO dao = new BoardsDAO();
+		BoardVO vo = new BoardVO();
+		int row = Integer.parseInt(request.getParameter("row")); // row는 숫자이므로 integer로 변환
+		vo.setBoardNo(row); // 전달 인자 담기
+		
+		vo = dao.select(vo); // DB 호출(전달 인자 호출)
+		request.setAttribute("vo", vo);
+		String viewPage = "views/board/boardSelect.jsp";
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
