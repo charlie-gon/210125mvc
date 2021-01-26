@@ -16,10 +16,12 @@ public class BoardsDAO extends DAO {
 	
 	
 	// SQL 쿼리문 // ctl + shift + x = 일괄 대문자로 변경
+	// final = 변하지 않는 '상수'로 처리해주기 위해 사용(쿼리문은 변경되면 안되기 때문에)
 	private final String BOARDSELECTLIST = "SELECT * FROM BOARDS ORDER BY BOARD_NO DESC";
 	private final String BOARDSELECT = "SELECT * FROM BOARDS WHERE BOARD_NO = ?";
 	private final String BOARDINSERT = "INSERT INTO BOARDS VALUES(?,?,?,?,?)";
 	private final String BOARDDELETE = "DELETE FROM BOARDS WHERE BOARD_NO = ?";
+	private final String BOARDUPDATE = "UPDATE BOARDS SET TITLE = ?, CONTENT = ? WHERE BOARD_NO = ?";
 	
 	// 전체 리스트 조회
 	public ArrayList<BoardVO> selectList(){
@@ -94,10 +96,25 @@ public class BoardsDAO extends DAO {
 		return n;
 	}
 	
+	// Board Update
 	public int update(BoardVO vo) {
 		int n = 0;
 		// 여기에 수정작업을 쓴다.
 		
+		try{
+			psmt = conn.prepareStatement(BOARDUPDATE);
+			psmt.setString(1, vo.getTitle());
+			psmt.setString(2, vo.getContent());
+			psmt.setInt(3, vo.getBoardNo());
+			n = psmt.executeUpdate();
+			
+			System.out.println(n + "개 업데이트");
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+			
 		return n;
 	}
 	

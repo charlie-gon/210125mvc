@@ -7,22 +7,24 @@
 <title>Insert title here</title>
 
 <style>
-	#textarea{
-		background-color:yellow;
+	#title, #content{
+		background-color: turquoise;
+		cursor: pointer;
 	}
 </style>
 
 </head>
 <body>
-	
+
 	<div align="center">
 <jsp:include page="../common/menu.jsp" />
-		<div><h1>게시글 상세보기</h1></div>
+		<div><h1>게시글 수정화면</h1></div>
 			<div>
+			<form id="frm" name="frm" action="/210125mvc/BoardUpdateSave.do" method="post">
 				<table border="1">
 					<tr>
 						<th width="80">글번호</th>
-						<td width="100" align="center">${vo.boardNo }</td>
+						<td width="100" align="center"><input type="text" id="no" name="no" value="${vo.boardNo }" readonly></td>
 						<th width="80">작성자</th>
 						<td width="100" align="center">${vo.writer }</td>
 						<th width="80">작성일자</th>
@@ -30,20 +32,20 @@
 					</tr>
 					<tr>
 						<th width="80">제목</th>
-						<td align="center" colspan="5">${vo.title }</td>
+						<td colspan="5"><input type="text" id="title" name="title" value="${vo.title }" size="50"></td>
 					</tr>
 					<tr>
 						<th width="80">내용</th>
-						<td align="center" colspan="5"><textarea id="textarea" rows="7" cols="60">${vo.content }</textarea></td>
+						<td colspan="5"><textarea id="content" name="content" rows="10" cols="60">${vo.content }</textarea></td>
 					</tr>
 				</table>
+					<p />
+					<input type="submit" value="수정"> &nbsp;&nbsp;&nbsp;
+					<input type="button" value="목록가기" onclick="location.href='/210125mvc/BoardList.do'">
+				</form>
 			</div>
 			<p />
-			<button type="button" onclick="location.href='/210125mvc/BoardList.do'">목록보기</button>
-			&nbsp;&nbsp;&nbsp;
-			<button type="button" onclick="location.href='/210125mvc/BoardDelete.do?row='+${vo.boardNo }">글삭제</button>
-			&nbsp;&nbsp;&nbsp;
-			<button type="button" onclick="location.href='/210125mvc/BoardUpdate.do?row='+${vo.boardNo }">글수정</button>
+			
 	</div>
 
 </body>

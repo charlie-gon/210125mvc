@@ -47,7 +47,7 @@
 				<!-- form 안에 있어야 정상작동 가능 -->
 				<div>
 				<button type="submit" onclick="location.href='/210125mvc/BoardInput.do'">저장하기</button> 
-				<button type="reset">취소</button>
+				<button type="reset" onclick="location.href='/210125mvc/BoardList.do'">취소</button>
 				</div>
 				
 			</form>	

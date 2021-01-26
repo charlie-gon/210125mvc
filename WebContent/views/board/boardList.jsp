@@ -26,7 +26,7 @@ tr.row:hover{
 		<table border="1">
 			<tr>
 				<th width="100">글번호</th>
-				<th width="100">제 목</th>
+				<th width="150">제 목</th>
 				<th width="100">작성자</th>
 				<th width="100">작성일</th>
 			</tr>
